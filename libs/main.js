@@ -24,6 +24,7 @@ const setting = {
     live : 100,
     meat: 0,
     speed: 4,
+    speedForce: 10,
 };
 
 function getQuantityElements(heightElement){
@@ -49,16 +50,19 @@ function playGame() {
     if (setting.start){
         if(keys.ArrowLeft & setting.x > 0){
             setting.x -= setting.speed;
+            player.style.transform = 'scale(-1, 1)';
         }
         if(keys.ArrowRight & setting.x < (gameArea.offsetWidth - player.offsetWidth)){
             setting.x += setting.speed;
+            player.style.transform = null;
         }
         if(keys.ArrowDown& setting.y < (gameArea.offsetHeight - player.offsetHeight)){
-            setting.y += setting.speed;
+            setting.y += setting.speedForce;
         }
         if(keys.ArrowUp & setting.y>0){
-            setting.y -= setting.speed;
+            setting.y -= setting.speedForce;
         }
+
         player.style.left = setting.x + 'px';
         player.style.top = setting.y + 'px';
         requestAnimationFrame(playGame);
